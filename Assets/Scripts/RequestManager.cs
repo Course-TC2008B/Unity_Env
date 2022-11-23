@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
-[System.Serializable]
-public class RequestConArgumentos : UnityEvent<ListaCarros> { }
 
-public class JsonManager : MonoBehaviour
+[System.Serializable]
+public class RequestConArgumentos : UnityEvent<ListaCarros> {}
+public class RequestManager : MonoBehaviour
 {
+
     [SerializeField]
     private UnityEvent _requestRecibidaSinArgumentos;
 
@@ -20,46 +21,50 @@ public class JsonManager : MonoBehaviour
 
     [SerializeField]
     private float _esperaEntreRequests = 1;
-
+    
+    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(HacerRequest());
+
+        // _requestRecibidaSinArgumentos += funcion();
     }
 
-    IEnumerator HacerRequest()
-    {
-        while (true)
-        {
-            // hacer request al "server"
+    IEnumerator HacerRequest() {
+
+        while(true){
+
+            // hacer request al "server" 
             // esto va a cambiar mañana
             // string jsonSource = PseudoServer.Instance.JSON;
+
             UnityWebRequest www = UnityWebRequest.Get(_url);
+
             yield return www.SendWebRequest();
+
             string jsonSource = null;
-            if (www.result != UnityWebRequest.Result.Success)
-            {
+
+            //revisar si no hubo broncas
+            if(www.result != UnityWebRequest.Result.Success){
                 print("ERROR EN REQUEST!");
-            }
-            else
-            {
+            } else {
                 jsonSource = www.downloadHandler.text;
             }
-            if (jsonSource != null)
-            {
-                ListaCarros listaSim =
-                    JsonUtility.FromJson<ListaCarros>(jsonSource);
-                print (listaSim);
-                for (int step = 0; step < listaSim.Length; step++)
-                {
-                    for (int car = 0; car < listaSim[step][0].Length; car++)
-                    {
-                        print(listaSim[step][0][car].position);
-                    }
-                    for (int tl = 0; listaSim[step][1].Length; tl++)
-                    {
-                        print(listaSim[step][1][tl].state);
-                    }
+            
+            if(jsonSource != null){
+
+                ListaCarros listaCarros = JsonUtility.FromJson<ListaCarros>(jsonSource);
+                print(listaCarros);
+
+                for(int i = 0; i < listaCarros.carros.Length; i++){
+
+                    print(
+                        listaCarros.carros[i].x + ", " + 
+                        listaCarros.carros[i].y + ", " + 
+                        listaCarros.carros[i].z 
+                    );
                 }
+
                 _requestRecibidaSinArgumentos?.Invoke();
                 _requestConArgumentos?.Invoke(listaCarros);
             }
