@@ -46,15 +46,15 @@ public class JsonManager : MonoBehaviour
             }
             if (jsonSource != null)
             {
-                ListaCarros listaCarros =
+                ListaCarros listaSim =
                     JsonUtility.FromJson<ListaCarros>(jsonSource);
-                print (listaCarros);
-                for (int t = 0; t < listaCarros.Length; t++) {
-                  for (int c = 0; c < listaCarros[t][0].Length; c++) {
-                    print(listaCarros[t][0][c].position)
+                print (listaSim);
+                for (int step = 0; step < listaSim.Length; step++) {
+                  for (int car = 0; car < listaSim[step][0].Length; car++) {
+                    print(listaSim[step][0][car].position)
                   } 
-                  for (int tl = 0; listaCarros[t][1].Length; tl++) {
-                    print(listaCarros[t][1][tl].state)
+                  for (int tl = 0; listaSim[step][1].Length; tl++) {
+                    print(listaSim[step][1][tl].state)
                   }
                 }
                 _requestRecibidaSinArgumentos?.Invoke();
