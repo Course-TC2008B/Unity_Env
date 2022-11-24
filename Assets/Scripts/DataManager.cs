@@ -1,50 +1,68 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 //
  public class DataManager : MonoBehaviour
 {
 //     
      [SerializeField]
-     private ListSim[] _listSims;
+     private Step[] _step;
      private GameObject[] _carros;
      private GameObject[] _semaforos;
+    // private JsonManager _jsonManager;
+     
 //
 //     // Start is called before the first frame update
-    void Start() 
+    void Start()
     {
-         _carros = new GameObject[_listSims[0].step[0].car.Length];
-         _semaforos = new GameObject[_listSims[0].step[0].semf.Length];
+        //_jsonManager = new JsonManager();
+        //_listSims = _jsonManager._listSimJson;
+         _carros = new GameObject[10];
+         _semaforos = new GameObject[2];
 
          PosicionarCarros();
     }
 //
-    private void PosicionarCarros() 
-     {
-         for (int ls = 0; ls < _listSims.Length; ls++)
-         {
-             for (int st = 0; st < _listSims[ls].step.Length; st++)
-             {
-                 for (int cr = 0; cr < _listSims[ls].step[st].car.Length; cr++)
-                 {
-                     _carros[cr] = CarPoolManager.Instance.ActivarObjeto(
-                         new Vector3(
-                         _listSims[ls].step[st].car[cr].position.x,
-                         _listSims[ls].step[st].car[cr].position.y
-                         )
-                     );
-                     // print(_car[cr].position);
-                 }
-                 // for (int sf = 0; sf <_listSims[ls].step[st].semf.Length; sf++)
-                 // {
-                 //     _semaforos[sf] = _listSims[ls].step[st].semf[sf].state
-                 // }
-             }
-         }
-     }
+    private void PosicionarCarros()
+    {
 
-    
+        for (int st = 0; st < _step.Length; st++)
+        {
+            for (int cr = 0; cr < _step[st].cars.Length; cr++)
+            {
+                string key = _step[st].cars[cr].Keys.First();
+                _carros[cr] = CarPoolManager.Instance.ActivarObjeto(
+                    new Vector2(
+                        _step[st].cars[cr][key].position[0],
+                        _step[st].cars[cr][key].position[1]
+                    )
+                );
+                // print(_car[cr].position);
+            }
+
+            for (int cr = 0; cr < _step[st].traffic_lights.Length; cr++)
+            {
+                string key = _step[st].traffic_lights[cr].Keys.First();
+                _carros[cr] = CarPoolManagerSM.Instance.ActivarObjeto(
+
+                    _step[st].traffic_lights[cr][key].state
+
+                );
+
+            }
+
+        }
+
+    }
+
+     void Update()
+    {
+        
+
+    }
+
     //
 //     // Update is called once per frame
 //     void Update()
@@ -62,17 +80,17 @@ using UnityEngine;
 //         }
 //     }
 //
-//     public void EscucharRequestSinArgumentos() {
-//
-//         print("HUBO UN REQUEST MUY INTERESANTE!");
-//     }
-//
-//     public void EscucharRequestConArgumentos(ListaCarros datos){
-//         print("DATOS: " + datos);
-//
-//         // actualizar arreglo _carros de esta clase con 
-//         // los carros que recibo de "datos"
-//
-//         // invocar PosicionarCarros()
-//     }
+     public void EscucharRequestSinArgumentos() {
+
+         print("HUBO UN REQUEST MUY INTERESANTE!");
+     }
+
+     public void EscucharRequestConArgumentos(ListSim datos){
+         print("DATOS: " + datos);
+
+         // actualizar arreglo _carros de esta clase con 
+         // los carros que recibo de "datos"
+
+         // invocar PosicionarCarros()
+     }
  }

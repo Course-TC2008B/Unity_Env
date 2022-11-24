@@ -16297,6 +16297,82 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 489674, guid: 3c75fe85eb37f5843976b233e951a756, type: 3}
   m_PrefabInstance: {fileID: 1232468897}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1236510823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1236510825}
+  - component: {fileID: 1236510824}
+  m_Layer: 0
+  m_Name: JsonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1236510824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236510823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b822173532638740af2dbe6513b629a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _requestRecibidaSinArgumentos:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2138939757}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
+        m_MethodName: EscucharRequestSinArgumentos
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _requestConArgumentos:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2138939757}
+        m_TargetAssemblyTypeName: DataManager, Assembly-CSharp
+        m_MethodName: EscucharRequestConArgumentos
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _url: http://127.0.0.1:5000/run
+  _esperaEntreRequests: 1
+--- !u!4 &1236510825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236510823}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 141.25522, y: 4.515915, z: 27.208385}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1238593895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26478,6 +26554,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 489674, guid: 3c75fe85eb37f5843976b233e951a756, type: 3}
   m_PrefabInstance: {fileID: 1938091638}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1940282591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1940282593}
+  - component: {fileID: 1940282592}
+  m_Layer: 0
+  m_Name: CarPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1940282592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940282591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693ce54c88e87a28595a854676e6534b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objetoOriginal: {fileID: 198730, guid: 85ac88d7c46e0ea4583870a98cc13580, type: 3}
+  _tamanioDePool: 2
+--- !u!4 &1940282593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940282591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 141.25522, y: 4.515915, z: 27.208385}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1941533368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30098,7 +30220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bde47b4a98f70ecb8db5a7ca38098db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _listSims: []
+  _step: []
 --- !u!4 &2138939758
 Transform:
   m_ObjectHideFlags: 0

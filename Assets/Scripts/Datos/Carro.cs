@@ -5,7 +5,8 @@ using UnityEngine;
 [Serializable]
 public class Carro
 {
-    public Vector2 position;
+   
+    public float[] position;
     // public int id;
     // public float x;
     // public float y;

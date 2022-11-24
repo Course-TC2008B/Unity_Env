@@ -2,7 +2,8 @@
  using System;
  using System.Collections;
  using System.Collections.Generic;
-using UnityEngine;
+ using System.Linq;
+ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
@@ -21,6 +22,8 @@ public class RequestConArgumentos : UnityEvent<ListSim> { }
 
     [SerializeField]
     private float _esperaEntreRequests = 1;
+
+    //public ListSim _listSimJson;
 
     void Start()
     {
@@ -45,22 +48,23 @@ public class RequestConArgumentos : UnityEvent<ListSim> { }
             {
                 jsonSource = www.downloadHandler.text;
             }
+            print(jsonSource);
             if (jsonSource != null)
             {
-                ListSim listSim =
+                ListSim listSim=
                     JsonUtility.FromJson<ListSim>(jsonSource);
-                print (listSim);
-                for (int st = 0; st < listSim.step.Length; st++)
-                {
-                    for (int cr = 0; cr < listSim.step[st].car.Length; cr++)
-                    {
-                        print(listSim.step[st].car[cr].position);
-                    }
-                    for (int sf = 0; sf < listSim.step[st].semf.Length; sf++)
-                    {
-                        print(listSim.step[st].semf[sf].state);
-                    }
-                }
+                // print (listSim);
+                // for (int st = 0; st < listSim.steps.Length; st++)
+                // {
+                //     for (int ls = 0;  ls < listSim.steps[st].cars.Length; ls++)
+                //     {
+                //         print(listSim.steps[st].cars[ls].Keys.First());
+                //     }
+                //     for (int tf = 0;  tf < listSim.steps[st].traffic_lights.Length; tf++)
+                //     {
+                //         print(listSim.steps[st].cars[tf].Keys.First());
+                //     }
+                // }
                 _requestRecibidaSinArgumentos?.Invoke();
                 _requestConArgumentos?.Invoke(listSim);
             }

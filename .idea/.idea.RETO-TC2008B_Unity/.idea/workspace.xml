@@ -6,12 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="60579837-b3c9-4df5-a500-4c61c2b3ebeb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RETO-TC2008B_Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RETO-TC2008B_Unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CarPoolManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CarPoolManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CarPoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CarPoolManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CarPoolManagerSM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CarPoolManagerSM.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prueba/Autodestruccion.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prueba/Autodestruccion.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prueba/CarPoolTester.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Prueba/CarPoolTester.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Datos/Carro.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Datos/Carro.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Datos/ListSim.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Datos/ListSim.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Datos/Semaforo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Datos/Semaforo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Datos/Steps.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Datos/Steps.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/JsonManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/JsonManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +73,7 @@
       <updated>1669243305504</updated>
       <workItem from="1669243329478" duration="192000" />
       <workItem from="1669243734962" duration="8343000" />
-      <workItem from="1669310242164" duration="5164000" />
+      <workItem from="1669310242164" duration="14392000" />
     </task>
     <servers />
   </component>
@@ -82,5 +85,24 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/JsonManager.cs</url>
+          <line>50</line>
+          <properties documentPath="C:\Users\vanec\Documents\GitHub\RETO-TC2008B_Unity\Assets\Scripts\JsonManager.cs" initialLine="49" containingFunctionPresentation="method 'HacerRequest'">
+            <startOffsets>
+              <option value="1308" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1326" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

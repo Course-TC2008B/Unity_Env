@@ -93,7 +93,7 @@ public class CarPoolManager : MonoBehaviour
         //print("FIXED UPDATE");
     }
 
-    public GameObject ActivarObjeto(Vector3 posicion){
+    public GameObject ActivarObjeto(Vector2 posicion){
 
         print(posicion);
         // revisar si queue tiene objetos disponibles

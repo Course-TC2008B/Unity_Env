@@ -8,6 +8,7 @@ using System;
     [Serializable]
     public class Semaforo
     {
+       
         public int state;
 
     }
