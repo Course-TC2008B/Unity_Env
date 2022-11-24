@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+
+ using System;
+ using System.Collections;
+ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
 [System.Serializable]
 public class RequestConArgumentos : UnityEvent<ListaCarros> { }
+ public class JsonManager : MonoBehaviour{
 
-public class JsonManager : MonoBehaviour
-{
     [SerializeField]
     private UnityEvent _requestRecibidaSinArgumentos;
 
@@ -16,7 +17,7 @@ public class JsonManager : MonoBehaviour
     private RequestConArgumentos _requestConArgumentos;
 
     [SerializeField]
-    private string _url = "http://127.0.0.1:5000/";
+    private string _url = "http://127.0.0.1:5000/run";
 
     [SerializeField]
     private float _esperaEntreRequests = 1;
@@ -49,21 +50,22 @@ public class JsonManager : MonoBehaviour
                 ListaCarros listaSim =
                     JsonUtility.FromJson<ListaCarros>(jsonSource);
                 print (listaSim);
-                for (int step = 0; step < listaSim.Length; step++)
+                for (int step = 0; step < listaSim.steps.Length; step++)
                 {
-                    for (int car = 0; car < listaSim[step][0].Length; car++)
+                    for (int car = 0; car < listaSim.steps[step][0].Length; car++)
                     {
-                        print(listaSim[step][0][car].position);
+                        print(listaSim.steps[step][0][car].position);
                     }
-                    for (int tl = 0; listaSim[step][1].Length; tl++)
+                    for (int tl = 0; listaSim.steps[step][1].Length; tl++)
                     {
-                        print(listaSim[step][1][tl].state);
+                        print(listaSim.steps[step][1][tl].state);
                     }
                 }
                 _requestRecibidaSinArgumentos?.Invoke();
-                _requestConArgumentos?.Invoke(listaCarros);
+                _requestConArgumentos?.Invoke(listaSim);
             }
             yield return new WaitForSeconds(_esperaEntreRequests);
         }
     }
 }
+     
