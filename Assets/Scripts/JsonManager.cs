@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.Networking;
 
 [System.Serializable]
-public class RequestConArgumentos : UnityEvent<ListaCarros> { }
+public class RequestConArgumentos : UnityEvent<ListSim> { }
  public class JsonManager : MonoBehaviour{
 
     [SerializeField]
@@ -47,22 +47,22 @@ public class RequestConArgumentos : UnityEvent<ListaCarros> { }
             }
             if (jsonSource != null)
             {
-                ListaCarros listaSim =
-                    JsonUtility.FromJson<ListaCarros>(jsonSource);
-                print (listaSim);
-                for (int step = 0; step < listaSim.steps.Length; step++)
+                ListSim listSim =
+                    JsonUtility.FromJson<ListSim>(jsonSource);
+                print (listSim);
+                for (int st = 0; st < listSim.step.Length; st++)
                 {
-                    for (int car = 0; car < listaSim.steps[step][0].Length; car++)
+                    for (int cr = 0; cr < listSim.step[st].car.Length; cr++)
                     {
-                        print(listaSim.steps[step][0][car].position);
+                        print(listSim.step[st].car[cr].position);
                     }
-                    for (int tl = 0; listaSim.steps[step][1].Length; tl++)
+                    for (int sf = 0; sf < listSim.step[st].semf.Length; sf++)
                     {
-                        print(listaSim.steps[step][1][tl].state);
+                        print(listSim.step[st].semf[sf].state);
                     }
                 }
                 _requestRecibidaSinArgumentos?.Invoke();
-                _requestConArgumentos?.Invoke(listaSim);
+                _requestConArgumentos?.Invoke(listSim);
             }
             yield return new WaitForSeconds(_esperaEntreRequests);
         }
