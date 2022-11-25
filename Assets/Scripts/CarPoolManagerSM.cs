@@ -104,6 +104,7 @@ public class CarPoolManagerSM : MonoBehaviour
 
         GameObject objetoActivado = _pool.Dequeue();
         objetoActivado.SetActive(true);
+        
         return objetoActivado;
     }
 

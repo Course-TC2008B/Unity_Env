@@ -9,9 +9,9 @@ using System.Text.Json;
    public class Step
    {
  
-       public IDictionary<string, Carro>[] cars;
+       public Carro[] cars;
  
-       public IDictionary<string, Semaforo>[] traffic_lights;
+       public  Semaforo[] traffic_lights;
 
    }
 
