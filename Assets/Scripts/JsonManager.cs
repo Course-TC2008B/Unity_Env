@@ -8,11 +8,10 @@ public class RequestConArgumentos : UnityEvent<ListSim> {
 }
 
 public class JsonManager : MonoBehaviour {
-
-    [SerializeField] private UnityEvent _requestRecibidaSinArgumentos;
-
+    
     [SerializeField] private RequestConArgumentos _requestConArgumentos;
-
+    [SerializeField] private int population = 10;
+    [SerializeField] private int seed = 1000;
     [SerializeField] private string _url = "http://127.0.0.1:5000/run";
 
     void Awake(){
@@ -20,7 +19,7 @@ public class JsonManager : MonoBehaviour {
     }
 
     IEnumerator HacerRequest(){
-        UnityWebRequest www = UnityWebRequest.Get(_url);
+        UnityWebRequest www = UnityWebRequest.Get(_url+"?population="+population+"&seed="+seed);
 
         yield return www.SendWebRequest();
         string jsonSource = null;

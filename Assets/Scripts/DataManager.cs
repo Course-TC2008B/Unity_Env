@@ -25,7 +25,13 @@ public class DataManager : MonoBehaviour {
             _carrosGO = new GameObject[_cars.Length];
             print("PosicionarCarros carrosGo Lenght: " + _carrosGO.Length);
             for (int i = 0; i < _carrosGO.Length; i++){
+
                 _carrosGO[i] = CarPoolManager.Instance.ActivarObjeto(Vector2.zero);
+                
+                
+                
+                
+
             }
         }
         // Finalizar cars
@@ -33,6 +39,7 @@ public class DataManager : MonoBehaviour {
         print("Carros Go: " + _carrosGO.Length);
         print("PosicionarCarros _lenght: " + _cars.Length);
         for (int cr = 0; cr < _cars.Length; cr++){
+            CarProperties carComponent = _carrosGO[cr].GetComponent<CarProperties>();
             float _x = _cars[cr].position[0];
             float _y = _cars[cr].position[1];
             _carrosGO[cr].transform.position = new Vector3(_x,
