@@ -16,7 +16,7 @@ public class DataManager : MonoBehaviour
 
     private GameObject[] _carrosGO = null;
 
-    private GameObject[] _semaforosGO = null;
+    private Light[] _semaforosGO = null;
 
     private void PosicionarCarros()
     {
@@ -52,25 +52,26 @@ public class DataManager : MonoBehaviour
         if (_semaforosGO == null || _semaforosGO.Length == 0)
         {
             print("Iniciar semaforos");
-            _semaforosGO = new GameObject[_trafic_lights.Length];
+            _semaforosGO = new Light[_trafic_lights.Length];
             print("CambiarSemaforos semaforosGo Lenght: " +
             _semaforosGO.Length);
-            for (int i = 0; i < _semaforosGO.Length; i++)
+            for (int tl = 0; tl < _semaforosGO.Length; tl++)
             {
-                _semaforosGO[i] = SMPoolManager.Instance.ActivarObjeto(0);
+                int _s = _trafic_lights[tl].state;
+                _semaforosGO[tl] = SMPoolManager.Instance.ActivarObjeto(_s);
             }
         }
 
         // Finalizar Traffic Lights
         print("Semaforos Go: " + _semaforosGO.Length);
         print("CambiarSemaforos _lenght: " + _trafic_lights.Length);
-        for (int tl = 0; tl < _trafic_lights.Length; tl++)
-        {
-            CarProperties carComponent =
-                _semaforosGO[tl].GetComponent<CarProperties>();
-            int _s = _trafic_lights[tl].state;
-            //_semaforosGO[tl].transform.position = new Vector3(_x, 0, _z);
-        }
+        //for (int tl = 0; tl < _trafic_lights.Length; tl++)
+      // {
+         //   SMProperties smComponent =
+           //     _semaforosGO[tl].GetComponent<SMProperties>();
+           //int _s = _trafic_lights[tl].state;
+           
+       //}
     }
 
     public void EscucharRequestConArgumentos(ListSim datos)

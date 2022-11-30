@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class SMPoolManager : MonoBehaviour
@@ -16,23 +17,17 @@ public class SMPoolManager : MonoBehaviour
 
     public float Dummy
     {
-        get
-        {
-            return _dummy;
-        }
-        set
-        {
-            _dummy = value;
-        }
+        get { return _dummy; }
+        set { _dummy = value; }
     }
 
-    [SerializeField]
-    private GameObject _objetoOriginal;
+    [SerializeField] private Light _objetoVerde;
+    [SerializeField] private Light _objetoRojo;
+    [SerializeField] private Light _objetoAmarillo;
 
-    [SerializeField]
-    private int _tamanioDePool;
+    [SerializeField] private int _tamanioDePool;
 
-    private Queue<GameObject> _pool;
+    private Queue<Light> _poolV, _poolA, _poolR;
 
     // sucede una vez al inicio, siempre corre no importa
     // si el objeto está deshabilitado
@@ -46,7 +41,7 @@ public class SMPoolManager : MonoBehaviour
         if (Instance != null)
         {
             // significa que ya fue asignada
-            Destroy (gameObject);
+            Destroy(gameObject);
             return;
         }
 
@@ -54,12 +49,20 @@ public class SMPoolManager : MonoBehaviour
 
         //print("START");
         // vamos a crear el pool
-        _pool = new Queue<GameObject>();
+        _poolV = new Queue<Light>();
+        _poolA = new Queue<Light>();
+        _poolR = new Queue<Light>();
         for (int i = 0; i < _tamanioDePool; i++)
         {
-            GameObject nuevoObjeto = Instantiate<GameObject>(_objetoOriginal);
-            _pool.Enqueue (nuevoObjeto);
-            nuevoObjeto.SetActive(false);
+            Light nuevoVerde = Instantiate<Light>(_objetoVerde);
+            Light nuevoRojo = Instantiate<Light>(_objetoRojo);
+            Light nuevoAmarillo = Instantiate<Light>(_objetoAmarillo);
+            _poolV.Enqueue(nuevoVerde);
+            _poolA.Enqueue(nuevoRojo);
+            _poolR.Enqueue(nuevoAmarillo);
+            nuevoVerde.GetComponent<Light>().enabled = false;
+            nuevoRojo.GetComponent<Light>().enabled = false;
+            nuevoAmarillo.GetComponent<Light>().enabled = false;
         }
     }
 
@@ -92,26 +95,73 @@ public class SMPoolManager : MonoBehaviour
         //print("FIXED UPDATE");
     }
 
-    public GameObject ActivarObjeto(int state)
+    public Light ActivarObjeto(int state)
     {
-        print (state);
+        print(state);
 
         // revisar si queue tiene objetos disponibles
-        if (_pool == null || _pool.Count == 0)
+        if (_poolV == null || _poolV.Count == 0)
         {
             Debug.LogError("SE ACABO EL POOL, YA TRANQUILIZATE");
             return null;
         }
 
-        GameObject objetoActivado = _pool.Dequeue();
-        print (objetoActivado);
-        objetoActivado.SetActive(true);
-        return objetoActivado;
-    }
+        if (_poolR == null || _poolR.Count == 0)
+        {
+            Debug.LogError("SE ACABO EL POOL, YA TRANQUILIZATE");
+            return null;
+        }
 
-    public void DesactivarObjeto(GameObject objetoADesactivar)
-    {
-        objetoADesactivar.SetActive(false);
-        _pool.Enqueue (objetoADesactivar);
+        if (_poolA == null || _poolA.Count == 0)
+        {
+            Debug.LogError("SE ACABO EL POOL, YA TRANQUILIZATE");
+            return null;
+        }
+
+        Light objetoActivadoV = _poolV.Dequeue();
+        print(objetoActivadoV);
+        objetoActivadoV.GetComponent<Light>().enabled = true;
+        Light objetoActivadoR = _poolR.Dequeue();
+        print(objetoActivadoR);
+        objetoActivadoR.GetComponent<Light>().enabled = true;
+        Light objetoActivadoA = _poolA.Dequeue();
+        print(objetoActivadoA);
+        objetoActivadoA.GetComponent<Light>().enabled = true;
+        switch (state)
+        {
+            case 0:
+                _objetoVerde.intensity = 5.0f;
+                _objetoAmarillo.intensity = 0.0f;
+                _objetoRojo.intensity = 0.0f;
+                return objetoActivadoV;
+                break;
+            case 1:
+                _objetoVerde.intensity = 0.0f;
+                _objetoAmarillo.intensity = 5.0f;
+                _objetoRojo.intensity = 0.0f;
+                return objetoActivadoA;
+                break;
+            case 2:
+                _objetoVerde.intensity = 0.0f;
+                _objetoAmarillo.intensity = 0.0f;
+                _objetoRojo.intensity = 5.0f;
+                return objetoActivadoR;
+                break;
+            default:
+                _objetoVerde.intensity = 5.0f;
+                _objetoAmarillo.intensity = 5.0f;
+                _objetoRojo.intensity = 5.0f;
+                break;
+        }
+
+        return null;
     }
 }
+
+
+// public void DesactivarObjeto(Light objetoADesactivar)
+    //{
+      //  objetoADesactivarV.GetComponent<Light>().enabled = false;
+    //    _poolV.Enqueue (objetoADesactivar);
+   // }
+

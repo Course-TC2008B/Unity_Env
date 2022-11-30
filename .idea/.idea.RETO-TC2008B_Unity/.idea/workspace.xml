@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60579837-b3c9-4df5-a500-4c61c2b3ebeb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/SimulationScene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/SimulationScene.unity.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RETO-TC2008B_Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RETO-TC2008B_Unity/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CarPoolManagerSM.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CarPoolManagerSM.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Datos/ListSim.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Datos/ListSim.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Datos/Steps.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Datos/Steps.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/JsonManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/JsonManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SMPoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SMPoolManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +70,10 @@
       <workItem from="1669243329478" duration="192000" />
       <workItem from="1669243734962" duration="8343000" />
       <workItem from="1669310242164" duration="14392000" />
-      <workItem from="1669325693244" duration="8736000" />
+      <workItem from="1669325693244" duration="9240000" />
+      <workItem from="1669662676769" duration="9000" />
+      <workItem from="1669663805272" duration="669000" />
+      <workItem from="1669766171889" duration="5833000" />
     </task>
     <servers />
   </component>
