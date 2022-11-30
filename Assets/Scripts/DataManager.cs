@@ -18,6 +18,8 @@ public class DataManager : MonoBehaviour
 
     private Light[] _semaforosGO = null;
 
+    private Vector3[] _direcciones;
+
     private void PosicionarCarros()
     {
         // Iniciar Cars
@@ -46,25 +48,25 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private void CambiarSemaforos()
-    {
+    // private void CambiarSemaforos()
+    // {
         // Iniciar Traffic Lights
-        if (_semaforosGO == null || _semaforosGO.Length == 0)
-        {
-            print("Iniciar semaforos");
-            _semaforosGO = new Light[_trafic_lights.Length];
-            print("CambiarSemaforos semaforosGo Lenght: " +
-            _semaforosGO.Length);
-            for (int tl = 0; tl < _semaforosGO.Length; tl++)
-            {
-                int _s = _trafic_lights[tl].state;
-                _semaforosGO[tl] = SMPoolManager.Instance.ActivarObjeto(_s);
-            }
-        }
+        // if (_semaforosGO == null || _semaforosGO.Length == 0)
+        // {
+        //     print("Iniciar semaforos");
+        //     _semaforosGO = new Light[_trafic_lights.Length];
+        //     print("CambiarSemaforos semaforosGo Lenght: " +
+        //     _semaforosGO.Length);
+        //     for (int tl = 0; tl < _semaforosGO.Length; tl++)
+        //     {
+        //         int _s = _trafic_lights[tl].state;
+        //         _semaforosGO[tl] = SMPoolManager.Instance.ActivarObjeto(_s);
+        //     }
+        // }
 
         // Finalizar Traffic Lights
-        print("Semaforos Go: " + _semaforosGO.Length);
-        print("CambiarSemaforos _lenght: " + _trafic_lights.Length);
+        //print("Semaforos Go: " + _semaforosGO.Length);
+        //print("CambiarSemaforos _lenght: " + _trafic_lights.Length);
         //for (int tl = 0; tl < _trafic_lights.Length; tl++)
       // {
          //   SMProperties smComponent =
@@ -72,7 +74,7 @@ public class DataManager : MonoBehaviour
            //int _s = _trafic_lights[tl].state;
            
        //}
-    }
+    //}
 
     public void EscucharRequestConArgumentos(ListSim datos)
     {
@@ -87,15 +89,17 @@ public class DataManager : MonoBehaviour
         {
             print("Step: " + i);
             _cars = datos.steps[i].cars;
-
-            //_trafic_lights = datos.steps[i].traffic_lights;
+            //_direcciones = new Vector3[_cars.Length];
+            _trafic_lights = datos.steps[i].traffic_lights;
             print("ConsumirSteps cars: " + _cars.Length);
 
-            //print("ConsumirSteps traffic lights: " + _trafic_lights.Lenght);
+            // print("ConsumirSteps traffic lights: " + _trafic_lights.Lenght);
             PosicionarCarros();
-            CambiarSemaforos();
+            SMPoolManager.Instance.ActualizarEstados(_trafic_lights);
+            //En cada paso calcular vector direccion de cada carro
+            
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.4f);
         }
     }
 }
