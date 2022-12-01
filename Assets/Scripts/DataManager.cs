@@ -14,10 +14,33 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private Semaforo[] _trafic_lights;
 
+    [SerializeField]
+    private float _escalaTiempo = 1;
+
     private GameObject[] _carrosGO = null;
 
     //private Light[] _semaforosGO = null;
     private Vector3[] _direcciones;
+
+    private void Update()
+    {
+        // actualizar posición basado en intervalos regulares
+        // RECUERDA QUE MOVEMOS LOS GAME OBJECTS
+        if (_direcciones != null && _direcciones.Length > 0)
+        {
+            for (int i = 0; i < _carrosGO.Length; i++)
+            {
+                // reorientar
+                _carrosGO[i].transform.forward = _direcciones[i].normalized;
+
+                // aplicar desplazamiento
+                _carrosGO[i]
+                    .transform
+                    .Translate(_direcciones[i] * Time.deltaTime * _escalaTiempo,
+                    Space.World);
+            }
+        }
+    }
 
     private void PosicionarCarros()
     {
@@ -47,55 +70,57 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // private void CambiarSemaforos()
-    // {
-    // Iniciar Traffic Lights
-    // if (_semaforosGO == null || _semaforosGO.Length == 0)
-    // {
-    //     print("Iniciar semaforos");
-    //     _semaforosGO = new Light[_trafic_lights.Length];
-    //     print("CambiarSemaforos semaforosGo Lenght: " +
-    //     _semaforosGO.Length);
-    //     for (int tl = 0; tl < _semaforosGO.Length; tl++)
-    //     {
-    //         int _s = _trafic_lights[tl].state;
-    //         _semaforosGO[tl] = SMPoolManager.Instance.ActivarObjeto(_s);
-    //     }
-    // }
-    // Finalizar Traffic Lights
-    //print("Semaforos Go: " + _semaforosGO.Length);
-    //print("CambiarSemaforos _lenght: " + _trafic_lights.Length);
-    //for (int tl = 0; tl < _trafic_lights.Length; tl++)
-    // {
-    //   SMProperties smComponent =
-    //     _semaforosGO[tl].GetComponent<SMProperties>();
-    //int _s = _trafic_lights[tl].state;
-    //}
-    //}
     public void EscucharRequestConArgumentos(ListSim datos)
     {
         print("DATOS: " + datos);
-
         StartCoroutine(ConsumirSteps(datos));
     }
 
     private IEnumerator ConsumirSteps(ListSim datos)
     {
+        float _difXAnt = 0.0f;
+        float _difZAnt = 0.0f;
         for (int i = 0; i < datos.steps.Length - 1; i++)
         {
             print("Step: " + i);
             _cars = datos.steps[i].cars;
-
-            //_direcciones = new Vector3[_cars.Length];
+            _direcciones = new Vector3[_cars.Length];
             _trafic_lights = datos.steps[i].traffic_lights;
             print("ConsumirSteps cars: " + _cars.Length);
 
             // print("ConsumirSteps traffic lights: " + _trafic_lights.Lenght);
             PosicionarCarros();
-            TLManager.Instance.ActualizarEstados(_trafic_lights);
+            TLManager.Instance.ActualizarEstados (_trafic_lights);
+            for (int j = 0; j < _cars.Length; j++)
+            {
+                // en cada paso calcular vector dirección para cada carro
+                if (i < datos.steps.Length - 1)
+                {
+                    float _difX =
+                        datos.steps[i + 1].cars[j].position[0] -
+                        datos.steps[i].cars[j].position[0];
+                    float _difZ =
+                        datos.steps[i + 1].cars[j].position[1] -
+                        datos.steps[i].cars[j].position[1];
+                    if (_difX == 0 && _difZ == 0)
+                    {
+                        _direcciones[j] = new Vector3(_difXAnt, 0, _difZAnt);
+                    }
+                    else
+                    {
+                        _direcciones[j] = new Vector3(_difX, 0, _difZ);
+                        _difXAnt = _difX;
+                        _difZAnt = _difZ;
+                    }
+                }
+                else
+                {
+                    _direcciones[j] = Vector3.zero;
+                }
+            }
 
             //En cada paso calcular vector direccion de cada carro
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(1 / _escalaTiempo);
         }
     }
 }
