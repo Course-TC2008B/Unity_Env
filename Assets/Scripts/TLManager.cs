@@ -4,14 +4,18 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
 
-public class SMPoolManager : MonoBehaviour
+public class TLManager : MonoBehaviour
 {
-    [SerializeField] private Light[] _objetoVerde;
-    [SerializeField] private Light[] _objetoRojo;
-    [SerializeField] private Light[] _objetoAmarillo;
+    [SerializeField]
+    private Light[] _objetoVerde;
+
+    [SerializeField]
+    private Light[] _objetoRojo;
+
+    [SerializeField]
+    private Light[] _objetoAmarillo;
 
     //[SerializeField] private int _tamanioDePool;
-
     // public Light ActivarObjeto(int state)
     // {
     //     print(state);
@@ -73,22 +77,17 @@ public class SMPoolManager : MonoBehaviour
     //
     //     return null;
     // }
-
-    public static SMPoolManager Instance {
-        get;
-        private set;
-    }
+    public static TLManager Instance { get; private set; }
 
     void Awake()
     {
         //print("AWAKE");
-
         // mecanismo de singleton correctivo
         // osea, si ya existe pelas
         if (Instance != null)
         {
             // significa que ya fue asignada
-            Destroy(gameObject);
+            Destroy (gameObject);
             return;
         }
 
@@ -128,4 +127,3 @@ public class SMPoolManager : MonoBehaviour
         }
     }
 }
-
