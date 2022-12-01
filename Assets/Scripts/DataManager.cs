@@ -120,6 +120,7 @@ public class DataManager : MonoBehaviour
             }
 
             //En cada paso calcular vector direccion de cada carro
+            print("Sali del for");
             yield return new WaitForSeconds(1 / _escalaTiempo);
         }
     }
