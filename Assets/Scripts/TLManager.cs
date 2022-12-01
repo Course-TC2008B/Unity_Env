@@ -2,18 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class TLManager : MonoBehaviour
 {
-    [SerializeField]
-    private Light[] _objetoVerde;
+    [SerializeField] private Light[] _objetoVerde;
 
-    [SerializeField]
-    private Light[] _objetoRojo;
+    [SerializeField] private Light[] _objetoRojo;
 
-    [SerializeField]
-    private Light[] _objetoAmarillo;
+    [SerializeField] private Light[] _objetoAmarillo;
 
     //[SerializeField] private int _tamanioDePool;
     // public Light ActivarObjeto(int state)
@@ -87,42 +85,39 @@ public class TLManager : MonoBehaviour
         if (Instance != null)
         {
             // significa que ya fue asignada
-            Destroy (gameObject);
+            Destroy(gameObject);
             return;
         }
 
         Instance = this;
     }
 
-    public void ActualizarEstados(Semaforo[] sem)
+    public void ActualizarEstados(Semaforo[] trafficLights)
     {
-        for (int tl = 0; tl < sem.Length - 1; tl++)
+        for (int i = 0; i < trafficLights.Length; i++)
         {
-            for (int i = 0; i < _objetoAmarillo.Length; i++)
+            switch (trafficLights[i].state)
             {
-                switch (sem[tl].state)
-                {
-                    case 0:
-                        _objetoVerde[i].intensity = 5.0f;
-                        _objetoAmarillo[i].intensity = 0.0f;
-                        _objetoRojo[i].intensity = 0.0f;
-                        break;
-                    case 1:
-                        _objetoVerde[i].intensity = 0.0f;
-                        _objetoAmarillo[i].intensity = 5.0f;
-                        _objetoRojo[i].intensity = 0.0f;
-                        break;
-                    case 2:
-                        _objetoVerde[i].intensity = 0.0f;
-                        _objetoAmarillo[i].intensity = 0.0f;
-                        _objetoRojo[i].intensity = 5.0f;
-                        break;
-                    default:
-                        _objetoVerde[i].intensity = 5.0f;
-                        _objetoAmarillo[i].intensity = 5.0f;
-                        _objetoRojo[i].intensity = 5.0f;
-                        break;
-                }
+                case 0:
+                    _objetoVerde[i].intensity = 5.0f;
+                    _objetoAmarillo[i].intensity = 0.0f;
+                    _objetoRojo[i].intensity = 0.0f;
+                    break;
+                case 1:
+                    _objetoVerde[i].intensity = 0.0f;
+                    _objetoAmarillo[i].intensity = 5.0f;
+                    _objetoRojo[i].intensity = 0.0f;
+                    break;
+                case 2:
+                    _objetoVerde[i].intensity = 0.0f;
+                    _objetoAmarillo[i].intensity = 0.0f;
+                    _objetoRojo[i].intensity = 5.0f;
+                    break;
+                default:
+                    _objetoVerde[i].intensity = 5.0f;
+                    _objetoAmarillo[i].intensity = 5.0f;
+                    _objetoRojo[i].intensity = 5.0f;
+                    break;
             }
         }
     }
