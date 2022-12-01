@@ -30,14 +30,20 @@ public class DataManager : MonoBehaviour
         {
             for (int i = 0; i < _carrosGO.Length; i++)
             {
-                // reorientar
-                _carrosGO[i].transform.forward = _direcciones[i].normalized;
+                if (_direcciones[i] != Vector3.zero)
+                {
+                    // reorientar
+                    _carrosGO[i].transform.forward = _direcciones[i].normalized;
+                    
+                    // aplicar desplazamiento
+                    _carrosGO[i]
+                        .transform
+                        .Translate(_direcciones[i] * Time.deltaTime * _escalaTiempo,
+                            Space.World);
+                }
 
-                // aplicar desplazamiento
-                _carrosGO[i]
-                    .transform
-                    .Translate(_direcciones[i] * Time.deltaTime * _escalaTiempo,
-                    Space.World);
+
+                
             }
         }
     }
@@ -90,7 +96,9 @@ public class DataManager : MonoBehaviour
 
             // print("ConsumirSteps traffic lights: " + _trafic_lights.Lenght);
             PosicionarCarros();
+            
             TLManager.Instance.ActualizarEstados (_trafic_lights);
+            
             for (int j = 0; j < _cars.Length; j++)
             {
                 // en cada paso calcular vector dirección para cada carro
@@ -104,13 +112,11 @@ public class DataManager : MonoBehaviour
                         datos.steps[i].cars[j].position[1];
                     if (_difX == 0 && _difZ == 0)
                     {
-                        _direcciones[j] = new Vector3(_difXAnt, 0, _difZAnt);
+                        _direcciones[j] = Vector3.zero;
                     }
                     else
                     {
                         _direcciones[j] = new Vector3(_difX, 0, _difZ);
-                        _difXAnt = _difX;
-                        _difZAnt = _difZ;
                     }
                 }
                 else

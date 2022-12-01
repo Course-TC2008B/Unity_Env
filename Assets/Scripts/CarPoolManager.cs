@@ -64,35 +64,6 @@ public class CarPoolManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    // corre para todos después de terminar TODOS los awakes
-    void Start()
-    {
-        
-
-    }
-
-    // Update is called once per frame
-    // frame?
-    // corre en intervalos irregulares 
-    void Update()
-    {
-        //print("UPDATE");
-    }
-
-    // corre también 1 vez por frame
-    // se ejecuta al terminar TODOS los updates 
-    // de TODOS los componentes de TODOS los objetos
-    void LateUpdate(){
-        //print("LATE UPDATE");
-    }
-
-    // corre en intervalos regulares especificados por engine
-    // tiene que ser menos frames que update
-    void FixedUpdate(){
-        //print("FIXED UPDATE");
-    }
-
     public GameObject ActivarObjeto(Vector2 posicion){
 
         print(posicion);
