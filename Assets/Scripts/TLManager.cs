@@ -12,6 +12,7 @@ public class TLManager : MonoBehaviour
     [SerializeField] private Light[] _objetoRojo;
 
     [SerializeField] private Light[] _objetoAmarillo;
+    [SerializeField] private float lightIntensity = 1.0f;
     
     public static TLManager Instance { get; private set; }
 
@@ -37,24 +38,24 @@ public class TLManager : MonoBehaviour
             switch (trafficLights[i].state)
             {
                 case 0:
-                    _objetoVerde[i].intensity = 5.0f;
+                    _objetoVerde[i].intensity = lightIntensity;
                     _objetoAmarillo[i].intensity = 0.0f;
                     _objetoRojo[i].intensity = 0.0f;
                     break;
                 case 1:
                     _objetoVerde[i].intensity = 0.0f;
-                    _objetoAmarillo[i].intensity = 5.0f;
+                    _objetoAmarillo[i].intensity = lightIntensity;
                     _objetoRojo[i].intensity = 0.0f;
                     break;
                 case 2:
                     _objetoVerde[i].intensity = 0.0f;
                     _objetoAmarillo[i].intensity = 0.0f;
-                    _objetoRojo[i].intensity = 5.0f;
+                    _objetoRojo[i].intensity = lightIntensity;
                     break;
                 default:
-                    _objetoVerde[i].intensity = 5.0f;
-                    _objetoAmarillo[i].intensity = 5.0f;
-                    _objetoRojo[i].intensity = 5.0f;
+                    _objetoVerde[i].intensity = lightIntensity;
+                    _objetoAmarillo[i].intensity = lightIntensity;
+                    _objetoRojo[i].intensity = lightIntensity;
                     break;
             }
         }

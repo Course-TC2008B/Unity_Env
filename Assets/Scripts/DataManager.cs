@@ -34,16 +34,14 @@ public class DataManager : MonoBehaviour
                 {
                     // reorientar
                     _carrosGO[i].transform.forward = _direcciones[i].normalized;
-                    
-                    // aplicar desplazamiento
-                    _carrosGO[i]
-                        .transform
-                        .Translate(_direcciones[i] * Time.deltaTime * _escalaTiempo,
-                            Space.World);
                 }
 
 
-                
+                // aplicar desplazamiento
+                _carrosGO[i]
+                    .transform
+                    .Translate(_direcciones[i] * Time.deltaTime * _escalaTiempo,
+                    Space.World);
             }
         }
     }

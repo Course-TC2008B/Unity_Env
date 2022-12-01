@@ -27,7 +27,7 @@ public class CarPoolManager : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject _objetoOriginal;
+    private GameObject[] _objetosOriginales;
     
     [SerializeField]
     private int _tamanioDePool;
@@ -58,7 +58,7 @@ public class CarPoolManager : MonoBehaviour
         _pool = new Queue<GameObject>();
         for(int i = 0; i < _tamanioDePool; i++){
 
-            GameObject nuevoObjeto = Instantiate<GameObject>(_objetoOriginal);
+            GameObject nuevoObjeto = Instantiate<GameObject>(_objetosOriginales[Random.Range(0, _objetosOriginales.Length)]);
             _pool.Enqueue(nuevoObjeto);
             nuevoObjeto.SetActive(false);
         }
