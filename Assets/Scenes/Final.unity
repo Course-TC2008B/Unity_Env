@@ -5658,7 +5658,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  population: 18
+  population: 10
   seed: 1000
   trafficLightsEvaluate: 1
   _url: http://127.0.0.1:5000/run
